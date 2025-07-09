@@ -1,0 +1,16 @@
+{
+  "name": "abhinav-portfolio-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Abhinav's personal portfolio",
+  "main": "index.html",
+  "scripts": {
+    "build:tailwind": "tailwindcss -i ./styles.css -o ./dist/styles.css --minify",
+    "dev": "tailwindcss -i ./styles.css -o ./dist/styles.css --watch"
+  },
+  "keywords": ["portfolio", "tailwind", "html", "css"],
+  "author": "Abhinav Reddy Maram",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  }
+}

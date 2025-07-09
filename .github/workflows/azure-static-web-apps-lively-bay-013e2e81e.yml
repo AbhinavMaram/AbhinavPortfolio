@@ -25,17 +25,15 @@ jobs:
         with:
           node-version: '18' # Ensure this matches what your project needs, or keep it generic
 
-      # --- START: Combined and more explicit step for Tailwind CSS build ---
-      - name: Install and Build Tailwind CSS
-        # We will manually change directory and run commands within the same shell instance.
-        run: |
-          cd ./frontend # Explicitly change directory
-          npm install tailwindcss # Install tailwindcss locally
-          ./node_modules/.bin/tailwindcss -i ./styles.css -o ./dist/styles.css --minify # Run the build command
-          # Also, ensure 'dist' folder is created if it doesn't exist
-          # You might want to remove this for production builds after testing
-          ls -R ./dist # List contents of dist to confirm output
-      # --- END: Combined and more explicit step for Tailwind CSS build ---
+      # --- START: Simplified steps with package.json ---
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend # All npm commands run from here
+        run: npm install # This will now read package.json and install tailwindcss
+
+      - name: Build Tailwind CSS
+        working-directory: ./frontend # Execute command within the frontend directory
+        run: npm run build:tailwind # Use the script defined in package.json
+      # --- END: Simplified steps with package.json ---
 
       - name: Build And Deploy
         id: builddeploy
@@ -44,10 +42,9 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_LIVELY_BAY_013E2E81E }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "./frontend" # Points to the frontend directory
+          app_location: "./frontend"
           api_location: "./backend/ContactFunction"
-          output_location: "dist" # Points to the 'dist' folder *inside* frontend
-                                  # So, Azure will deploy from ./frontend/dist
+          output_location: "dist" # This correctly points to frontend/dist
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
