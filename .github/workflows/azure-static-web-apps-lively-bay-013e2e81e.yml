@@ -23,22 +23,15 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '18' # You can adjust this Node.js version if needed
 
-      - name: Install Tailwind CSS (Globally for CI)
-        run: npm install -g tailwindcss
-
-      - name: Build Tailwind CSS
-        working-directory: ./frontend # Change to the frontend directory
-        # NEW LINE BELOW: Directly execute the tailwindcss command from the global npm bin directory
-        # This path is common for global npm installs on Linux runners
-        run: /usr/local/bin/tailwindcss -i ./styles.css -o ./dist/styles.css --minify
-        # If the above fails, you could also try:
-        # run: ~/.npm-global/bin/tailwindcss -i ./styles.css -o ./dist/styles.css --minify
-        # Or simply:
-        # run: tailwindcss -i ./styles.css -o ./dist/styles.css --minify
-        # The 'tailwindcss' command should be in the PATH after global install,
-        # but sometimes explicit pathing is more reliable in CI.
+      # --- START: Modified steps for Tailwind CSS build ---
+      - name: Install local Tailwind CSS and Build
+        working-directory: ./frontend # Execute commands within the frontend directory
+        run: |
+          npm install tailwindcss # Install tailwindcss locally in frontend/node_modules
+          npx tailwindcss -i ./styles.css -o ./dist/styles.css --minify # Run the build command
+      # --- END: Modified steps for Tailwind CSS build ---
 
       - name: Build And Deploy
         id: builddeploy
@@ -49,7 +42,7 @@ jobs:
           action: "upload"
           app_location: "./frontend"
           api_location: "./backend/ContactFunction"
-          output_location: "dist"
+          output_location: "dist" # IMPORTANT: This should be 'dist'
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
