@@ -23,17 +23,15 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Ensure this matches what your project needs, or keep it generic
+          node-version: '18'
 
-      # --- START: Simplified steps with package.json ---
       - name: Install Frontend Dependencies
-        working-directory: ./frontend # All npm commands run from here
-        run: npm install # This will now read package.json and install tailwindcss
+        working-directory: ./frontend
+        run: npm install
 
       - name: Build Tailwind CSS
-        working-directory: ./frontend # Execute command within the frontend directory
-        run: npm run build:tailwind # Use the script defined in package.json
-      # --- END: Simplified steps with package.json ---
+        working-directory: ./frontend
+        run: npm run build:tailwind
 
       - name: Build And Deploy
         id: builddeploy
@@ -44,7 +42,8 @@ jobs:
           action: "upload"
           app_location: "./frontend"
           api_location: "./backend/ContactFunction"
-          output_location: "dist" # This correctly points to frontend/dist
+          output_location: "dist"
+          skip_app_build: true 
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
