@@ -25,15 +25,13 @@ jobs:
         with:
           node-version: '18'
 
-      # --- START: Separated steps for Tailwind CSS build ---
       - name: Install Tailwind CSS
         working-directory: ./frontend # Execute commands within the frontend directory
         run: npm install tailwindcss # Install tailwindcss locally in frontend/node_modules
 
       - name: Build Tailwind CSS
         working-directory: ./frontend # Needs to be in the frontend directory again
-        run: npx tailwindcss -i ./styles.css -o ./dist/styles.css --minify
-      # --- END: Separated steps for Tailwind CSS build ---
+        run: ./node_modules/.bin/tailwindcss -i ./styles.css -o ./dist/styles.css --minify
 
       - name: Build And Deploy
         id: builddeploy
