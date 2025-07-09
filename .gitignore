@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/backend/ContactFunction/.vs/ContactFunction
+/backend/ContactFunction/bin
+/backend/ContactFunction/obj
