@@ -23,15 +23,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # You can adjust this Node.js version if needed
+          node-version: '18'
 
-      # --- START: Modified steps for Tailwind CSS build ---
-      - name: Install local Tailwind CSS and Build
+      # --- START: Separated steps for Tailwind CSS build ---
+      - name: Install Tailwind CSS
         working-directory: ./frontend # Execute commands within the frontend directory
-        run: |
-          npm install tailwindcss # Install tailwindcss locally in frontend/node_modules
-          npx tailwindcss -i ./styles.css -o ./dist/styles.css --minify # Run the build command
-      # --- END: Modified steps for Tailwind CSS build ---
+        run: npm install tailwindcss # Install tailwindcss locally in frontend/node_modules
+
+      - name: Build Tailwind CSS
+        working-directory: ./frontend # Needs to be in the frontend directory again
+        run: npx tailwindcss -i ./styles.css -o ./dist/styles.css --minify
+      # --- END: Separated steps for Tailwind CSS build ---
 
       - name: Build And Deploy
         id: builddeploy
@@ -42,7 +44,7 @@ jobs:
           action: "upload"
           app_location: "./frontend"
           api_location: "./backend/ContactFunction"
-          output_location: "dist" # IMPORTANT: This should be 'dist'
+          output_location: "dist"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
