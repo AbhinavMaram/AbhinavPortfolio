@@ -319,6 +319,9 @@
           formMessage.textContent = result.message;
           formMessage.classList.add('text-green-600', 'dark:text-green-400');
           contactForm.reset();
+          setTimeout(() => {
+            formMessage.textContent = ''; // Clear message after 15 seconds
+          }, 15000);
         } else {
           // Handle non-2xx responses
           const errorMessage = result.message || 'An unknown error occurred.';
