@@ -169,7 +169,7 @@
       <h2 class="section-title">Get In Touch</h2>
       <p class="text-center text-lg mb-8 text-gray-700 dark:text-gray-300">Have a question or want to collaborate? Feel
         free to reach out!</p>
-      <form method="POST" action="https://lively-bay-013e2e81e.1.azurestaticapps.net/api/contact"
+      <form id="contactForm" method="POST" action="https://lively-bay-013e2e81e.1.azurestaticapps.net/api/contact"
         class="max-w-xl mx-auto p-8 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-xl form-animate">
         <div class="mb-5">
           <label for="name" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Name</label>
@@ -184,7 +184,10 @@
           <textarea id="message" name="message" placeholder="Your message here..." rows="6" required
             class="form-input resize-y"></textarea>
         </div>
-        <button type="submit"
+
+        <div id="form-message" class="mt-4 text-center text-sm font-semibold"></div>
+
+        <button type="submit" id="submitButton"
           class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
           Send Message <i class="fas fa-paper-plane ml-2"></i>
         </button>
@@ -286,6 +289,52 @@
       });
     });
 
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('form-message');
+    const submitButton = document.getElementById('submitButton');
+
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Clear previous messages
+      formMessage.textContent = '';
+      formMessage.className = 'mt-4 text-center text-sm font-semibold';
+      submitButton.disabled = true;
+      submitButton.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin ml-2"></i>';
+
+      const formData = new FormData(contactForm);
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new URLSearchParams(formData).toString(), // Convert FormData to URL-encoded string
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded' // Explicitly set content type
+          }
+        });
+
+        const result = await response.json(); // Parse the JSON response from your function
+
+        if (response.ok) {
+          formMessage.textContent = result.message;
+          formMessage.classList.add('text-green-600', 'dark:text-green-400');
+          contactForm.reset();
+        } else {
+          // Handle non-2xx responses
+          const errorMessage = result.message || 'An unknown error occurred.';
+          formMessage.textContent = errorMessage;
+          formMessage.classList.add('text-red-600', 'dark:text-red-400');
+        }
+      } catch (error) {
+        // Handle network errors or issues with parsing JSON
+        console.error('Error submitting form:', error);
+        formMessage.textContent = 'Failed to connect to the server. Please try again.';
+        formMessage.classList.add('text-red-600', 'dark:text-red-400');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.innerHTML = 'Send Message <i class="fas fa-paper-plane ml-2"></i>';
+      }
+    });
   </script>
 </body>
 
