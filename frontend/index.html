@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abhinav Reddy — Full Stack .NET Developer</title>
+  <meta name="description" content="Abhinav Reddy — Full Stack .NET Developer with 7 years building scalable enterprise apps with ASP.NET Core, Angular, React, Azure and AWS." />
+  <meta property="og:title" content="Abhinav Reddy — Full Stack .NET Developer" />
+  <meta property="og:description" content=".NET Core · Angular · React · Azure · AWS — 7 years shipping enterprise software." />
+  <meta name="theme-color" content="#0b0d10" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <script>
+    // apply saved theme before paint
+    try {
+      const t = localStorage.getItem("theme") || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.dataset.theme = t;
+    } catch {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas id="mesh" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <a href="#top" class="brand" aria-label="Home">
+      <span class="brand-mark">AR</span>
+      <span class="brand-text">abhinav<span class="dim">.reddy</span></span>
+    </a>
+    <div class="topbar-actions">
+      <button class="kbd-btn" id="openPalette" aria-label="Open command palette">
+        <span>Jump to…</span><kbd>Ctrl</kbd><kbd>K</kbd>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle light / dark theme">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1Z"/></svg>
+      </button>
+      <a class="btn btn-small" href="assets/Abhinav_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+    </div>
+  </header>
+
+  <!-- Pipeline rail -->
+  <nav class="rail" aria-label="Sections">
+    <ol>
+      <li><a href="#top" data-stage="top"><span class="dot"></span><span class="lbl">init</span></a></li>
+      <li><a href="#about" data-stage="about"><span class="dot"></span><span class="lbl">restore</span></a></li>
+      <li><a href="#stack" data-stage="stack"><span class="dot"></span><span class="lbl">build</span></a></li>
+      <li><a href="#impact" data-stage="impact"><span class="dot"></span><span class="lbl">test</span></a></li>
+      <li><a href="#deploys" data-stage="deploys"><span class="dot"></span><span class="lbl">deploy</span></a></li>
+      <li><a href="#release" data-stage="release"><span class="dot"></span><span class="lbl">release</span></a></li>
+    </ol>
+    <div class="rail-progress"><span id="railFill"></span></div>
+  </nav>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top" data-section="top">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse"></span> pipeline #2026 · running</p>
+        <h1 class="display">
+          <span class="line">Abhinav</span>
+          <span class="line"><em>Reddy</em><span class="caret">_</span></span>
+        </h1>
+        <p class="hero-role">Full Stack <strong>.NET</strong> Developer — I build the services, the screens, and the pipelines that ship them.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" data-open-chat>
+            <span class="spark">✦</span> Ask my AI agent
+          </button>
+          <a class="btn btn-ghost" href="#deploys">View deployments</a>
+        </div>
+        <ul class="hero-tags" id="heroTags"></ul>
+      </div>
+      <figure class="terminal" aria-label="Animated build log">
+        <div class="term-bar">
+          <span class="lights"><i></i><i></i><i></i></span>
+          <span class="term-title">deploy.yml — main</span>
+          <span class="term-badge" id="termBadge">running</span>
+        </div>
+        <pre class="term-body" id="termBody" aria-live="off"></pre>
+      </figure>
+      <a href="#about" class="scroll-cue" aria-label="Scroll to about"><span></span></a>
+    </section>
+
+    <!-- ABOUT / restore -->
+    <section class="stage" id="about" data-section="about">
+      <header class="stage-head">
+        <span class="stage-num">01</span>
+        <span class="stage-cmd">$ dotnet restore</span>
+        <h2 class="stage-title">Seven years of <em>end-to-end</em> ownership.</h2>
+      </header>
+      <div class="about-grid">
+        <p class="lede" id="summary"></p>
+        <aside class="about-card">
+          <div class="kv"><span>role</span><b id="aboutRole"></b></div>
+          <div class="kv"><span>experience</span><b id="aboutYears"></b></div>
+          <div class="kv"><span>domains</span><b id="aboutDomains"></b></div>
+          <div class="kv"><span>education</span><b id="aboutEdu"></b></div>
+          <div class="kv"><span>status</span><b class="ok">● open to work</b></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- STACK / build -->
+    <section class="stage" id="stack" data-section="stack">
+      <header class="stage-head">
+        <span class="stage-num">02</span>
+        <span class="stage-cmd">$ dotnet build --configuration Release</span>
+        <h2 class="stage-title">The <em>dependency graph</em>.</h2>
+      </header>
+      <div class="stack-wrap">
+        <div class="stack-tabs" role="tablist" id="stackTabs"></div>
+        <div class="stack-panel" id="stackPanel" role="tabpanel"></div>
+        <div class="stack-search">
+          <label for="skillSearch" class="sr">Search skills</label>
+          <input id="skillSearch" type="search" placeholder="grep a skill… e.g. kafka, signalr, rag" autocomplete="off" />
+          <p class="search-out" id="searchOut" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT / test -->
+    <section class="stage" id="impact" data-section="impact">
+      <header class="stage-head">
+        <span class="stage-num">03</span>
+        <span class="stage-cmd">$ dotnet test --collect:"impact"</span>
+        <h2 class="stage-title">Assertions that <em>passed</em>.</h2>
+      </header>
+      <div class="metrics" id="metrics"></div>
+    </section>
+
+    <!-- EXPERIENCE / deploy -->
+    <section class="stage" id="deploys" data-section="deploys">
+      <header class="stage-head">
+        <span class="stage-num">04</span>
+        <span class="stage-cmd">$ git log --deployments --oneline</span>
+        <h2 class="stage-title">Deployment <em>history</em>.</h2>
+      </header>
+      <ol class="deploys" id="deployList"></ol>
+      <div class="edu" id="eduList"></div>
+    </section>
+
+    <!-- CONTACT / release -->
+    <section class="stage" id="release" data-section="release">
+      <header class="stage-head">
+        <span class="stage-num">05</span>
+        <span class="stage-cmd">$ gh release create v-next</span>
+        <h2 class="stage-title">Ship the <em>next release</em> together.</h2>
+      </header>
+      <div class="release-grid">
+        <div class="release-copy">
+          <p class="lede">Hiring for a .NET, Angular/React or cloud role? Reach out directly, or ask the AI agent anything about my work first.</p>
+          <button class="btn btn-primary" data-open-chat><span class="spark">✦</span> Ask my AI agent</button>
+        </div>
+        <ul class="links">
+          <li><a id="mailLink" href="#">✉ <span></span></a></li>
+          <li><a id="liLink" href="#" target="_blank" rel="noopener">in · LinkedIn ↗</a></li>
+          <li><a id="ghLink" href="#" target="_blank" rel="noopener">⌥ GitHub ↗</a></li>
+          <li><a href="assets/Abhinav_Resume.pdf" target="_blank" rel="noopener">⇩ Résumé (PDF) ↗</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>© <span id="year"></span> Abhinav Reddy</span>
+      <span class="dim">built with vanilla JS · served by Azure Static Web Apps · agent by Ollama</span>
+    </footer>
+  </main>
+
+  <!-- AI agent -->
+  <button class="agent-fab" id="agentFab" data-open-chat aria-label="Open AI assistant">
+    <span class="fab-orb"></span>
+    <span class="fab-text">ask.ai</span>
+  </button>
+
+  <section class="agent" id="agent" role="dialog" aria-modal="false" aria-labelledby="agentTitle" hidden>
+    <header class="agent-head">
+      <div>
+        <p class="agent-title" id="agentTitle"><span class="fab-orb small"></span> abhinav.agent</p>
+        <p class="agent-sub" id="agentSub">answers from Abhinav's résumé · may make mistakes</p>
+      </div>
+      <div class="agent-actions">
+        <button class="icon-btn" id="agentReset" aria-label="Clear conversation" title="Clear">↺</button>
+        <button class="icon-btn" id="agentClose" aria-label="Close assistant" title="Close">✕</button>
+      </div>
+    </header>
+    <div class="agent-log" id="agentLog" aria-live="polite"></div>
+    <div class="agent-chips" id="agentChips"></div>
+    <form class="agent-input" id="agentForm">
+      <span class="prompt">❯</span>
+      <label for="agentText" class="sr">Ask a question</label>
+      <textarea id="agentText" rows="1" maxlength="1000" placeholder="Ask about experience, stack, impact…"></textarea>
+      <button type="submit" class="send" aria-label="Send">↵</button>
+    </form>
+  </section>
+
+  <!-- Command palette -->
+  <div class="palette" id="palette" hidden>
+    <div class="palette-box" role="dialog" aria-modal="true" aria-label="Command palette">
+      <input id="paletteInput" placeholder="Type a command or section…" autocomplete="off" />
+      <ul id="paletteList" role="listbox"></ul>
+      <p class="palette-foot"><kbd>↑</kbd><kbd>↓</kbd> navigate · <kbd>Enter</kbd> run · <kbd>Esc</kbd> close</p>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/chat.js"></script>
+</body>
+</html>
