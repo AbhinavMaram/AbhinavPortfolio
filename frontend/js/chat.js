@@ -149,7 +149,7 @@ function localAnswer(q) {
 
   const job = experience.find((e) => t.includes(e.company.toLowerCase().split(" ")[0]) || (e.company === "HCL Technologies" && has("hcl")));
   if (job) {
-    return `**${job.role} @ ${job.company}** (${job.start} – ${job.end}, ${job.place})\n\n${job.highlight}\n\n${job.bullets.slice(0, 5).map((b) => `- ${b}`).join("\n")}\n\nStack: ${job.stack.map((s) => `\`${s}\``).join(" ")}`;
+    return `**${job.role} @ ${job.company}** (${job.start} – ${job.end}${job.place ? `, ${job.place}` : ""})\n\n${job.highlight}\n\n${job.bullets.slice(0, 5).map((b) => `- ${b}`).join("\n")}\n\nStack: ${job.stack.map((s) => `\`${s}\``).join(" ")}`;
   }
   if (has("contact", "email", "reach", "hire him", "linkedin", "phone", "call")) {
     return `You can reach Abhinav at [${profile.email}](mailto:${profile.email}) or on [LinkedIn](${profile.linkedin}).`;
@@ -161,16 +161,19 @@ function localAnswer(q) {
     return `Yes. Abhinav integrates AI in production with **Azure OpenAI**, Azure AI Search, OpenAI API, prompt engineering and RAG patterns. At Regions Bank he built AI-driven loan recommendations into the SalesPro mobile app (−25% processing time), and he uses GitHub Copilot and Claude Code daily to ship faster.`;
   }
   if (has("microservice", "kafka", "event", "rabbit", "cqrs", "ddd", "architecture", "service bus")) {
-    return `Architecture is a core strength:\n- Led the split of State Farm's policy monolith into **.NET 8 microservices** (+35% transaction performance), running on AWS EKS.\n- Event-driven systems with **Kafka, Azure Service Bus and RabbitMQ**, using CQRS and DDD.\n- Clean Architecture & SOLID; REST, GraphQL and gRPC between services.`;
+    return `Architecture is a core strength:\n- Led the split of State Farm's policy monolith into **.NET Core microservices** (+35% transaction performance), running on AWS EKS.\n- Event-driven systems: **Kafka** between policy and claims services at State Farm (idempotent consumers, dead-letter handling), **Azure Service Bus** at Regions Bank (−30% failed transactions at peak), and **RabbitMQ** with CQRS at HCL.\n- Clean Architecture & SOLID; REST, GraphQL and gRPC between services.`;
   }
   if (has("cloud", "azure", "aws", "devops", "ci/cd", "pipeline", "kubernetes", "docker", "deploy")) {
     return `Cloud & DevOps: **Azure** (App Service, Functions, AKS, Service Bus, Cosmos DB, Key Vault, APIM, Azure AD) and **AWS** (EKS, ECS Fargate, EC2, Cognito, CloudWatch). He builds CI/CD in Azure DevOps and GitHub Actions — cutting deployment time by 50% and enabling zero-downtime releases at Regions Bank.`;
   }
   if (has("front", "angular", "react", "ui", "ux", "typescript")) {
-    return `Frontend: **Angular 16–20** with NgRx/RxJS (State Farm, Regions Bank), **React 18** with Redux (HCL), TypeScript and Tailwind. He translates Figma into accessible components and improved WCAG scores at Regions Bank; he also shipped an Angular + Capacitor hybrid app for iOS/Android.`;
+    return `Frontend: **Angular** with NgRx/RxJS (State Farm, Regions Bank), **React** with Redux (HCL), TypeScript and Tailwind. He translates Figma into accessible components and improved WCAG scores at Regions Bank; he also shipped an Angular + Capacitor hybrid app for iOS/Android.`;
+  }
+  if (has("observab", "monitor", "logging", "tracing", "dynatrace", "splunk", "serilog", "grafana", "new relic", "app insights")) {
+    return `Observability: **Dynatrace** (APM, distributed tracing) and **Application Insights** at Regions Bank cut incident resolution time **35%**; **New Relic, CloudWatch and Grafana** at State Farm protect SLAs; and at HCL he centralized **Splunk** logging with **Serilog** structured logs tagged by correlation ID.`;
   }
   if (has("test", "quality", "coverage", "xunit")) {
-    return `Testing is part of his definition of done: xUnit, NUnit, MSTest and Moq on the backend; Playwright, Cypress and Jasmine/Karma on the frontend. He raised coverage above **85%** at State Farm (−18% production defects) and from 40% to 75% at HCL.`;
+    return `Testing is part of his definition of done: xUnit, NUnit, MSTest and Moq on the backend; Playwright, Cypress and Jasmine/Karma on the frontend. At State Farm his unit, integration and end-to-end suites (xUnit + Moq, Jasmine/Karma, Cypress) raised coverage above **85%** (−18% production defects) and from 40% to 75% at HCL.`;
   }
   if (has("database", "sql", "postgres", "redis", "cache", "performance")) {
     return `Data & performance: SQL Server, Azure SQL, PostgreSQL, Oracle, MongoDB and Redis. Highlights — Redis caching cut API latency **45%** at Regions Bank and **30%** at HCL; query and index tuning for large transactional workloads at State Farm.`;

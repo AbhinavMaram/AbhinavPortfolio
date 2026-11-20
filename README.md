@@ -1,6 +1,6 @@
 # Abhinav Reddy — Portfolio
 
-Personal portfolio for **Abhinav Reddy, Full Stack .NET Developer** (.NET Core · Angular · React · Azure · AWS).
+Personal portfolio for **Abhinav Reddy, Senior Full Stack .NET Engineer** (.NET Core · Angular · React · Azure · AWS · AI).
 
 The site is designed as a **CI/CD pipeline run**: a vertical pipeline rail tracks your progress through the stages (`init → restore → build → test → deploy → release`), the hero streams a live deploy log, skills are a browsable "dependency graph", impact metrics are "passing tests", and work history is a "deployment history" with expandable changelogs.
 

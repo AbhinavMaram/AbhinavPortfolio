@@ -37,7 +37,7 @@ $("#deployList").innerHTML = experience.map((e, i) => `
             <span class="hash">${e.id}</span>
             <span class="env">${e.end === "Present" ? "● production · live" : "✓ released"}</span>
             <span>${esc(e.domain)}</span>
-            <span>${esc(e.place)}</span>
+            ${e.place ? `<span>${esc(e.place)}</span>` : ""}
           </div>
           <h3 class="deploy-co">${esc(e.company)}</h3>
           <span class="deploy-role">${esc(e.role)}</span>
