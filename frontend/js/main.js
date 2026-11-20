@@ -245,7 +245,6 @@ const cmds = [
   { label: "Go to › Experience", hint: "deploy", run: () => go("#deploys") },
   { label: "Go to › Contact", hint: "release", run: () => go("#release") },
   { label: "Ask the AI agent", hint: "chat", run: () => window.dispatchEvent(new CustomEvent("open-chat")) },
-  { label: "Open résumé (PDF)", hint: "↗", run: () => open(profile.resume, "_blank", "noopener") },
   { label: "Toggle theme", hint: "light/dark", run: () => $("#themeToggle").click() },
   { label: "Copy email address", hint: profile.email, run: () => navigator.clipboard?.writeText(profile.email) },
   { label: "Open LinkedIn", hint: "↗", run: () => open(profile.linkedin, "_blank", "noopener") },

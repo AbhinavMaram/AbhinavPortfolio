@@ -22,7 +22,7 @@ frontend/
   js/main.js                 rendering, pipeline rail, palette, mesh
   js/chat.js                 AI agent UI + offline fallback
   staticwebapp.config.json   SWA routing, headers, API runtime
-  assets/                    résumé PDF, icons
+  assets/                    icons
 backend/ContactFunction/     .NET 8 isolated Azure Functions
   ChatFunction.cs            POST /api/chat (Ollama)
   ResumeContext.cs           system prompt with the résumé

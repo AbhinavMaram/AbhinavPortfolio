@@ -9,7 +9,6 @@ export const profile = {
   email: "abhinav232025@outlook.com",
   linkedin: "https://www.linkedin.com/in/abhinav-reddy-452a34364/",
   github: "https://github.com/AbhinavMaram",
-  resume: "assets/Abhinav_Resume.pdf",
   headline: ".NET Core · Angular · React · Azure · AWS",
   summary:
     "I design and ship scalable enterprise applications across insurance, finance, healthcare and security. End-to-end ownership from ASP.NET Core Web APIs and C# to Angular and React front ends — on cloud-native Azure and AWS, with event-driven microservices, CI/CD I own, and AI features built on Azure OpenAI in production.",
